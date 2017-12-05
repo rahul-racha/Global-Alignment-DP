@@ -3,11 +3,11 @@ using namespace std;
 
 class MAT {
   private:
-    int **affineMatrix;
+    float **affineMatrix;
   public:
     MAT(int r, int c);
-    void printMatrix();
-    //MARK:methods to insert
+    float ** returnAffineMat();
+    void printMatrix(string s1, string s2);
 };
 
 class AGP {
@@ -18,11 +18,19 @@ class AGP {
 		int _mismatch;
     string _s1;
     string _s2;
+    int _rows;
+    int _columns;
     MAT *_M;
-    MAT *_I;
+    MAT *_X;
     MAT *_Y;
 	public:
 		AGP(int gap_open, int gap_extend, int match, int mismatch, string s1, string s2); //constructor
 		int getParameter(char param);
+    void initializeMatrices();
+    int matchChars(char a, char b);
+    void fillMatrices();
+    // void initializeX();
+    // void initializeY();
+    //void initializeMatrices();
     void printMatrix();
 };
