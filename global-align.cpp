@@ -1,75 +1,36 @@
 #include<iostream>
 #include "AGP.h"
-#include <typeinfo>
-//using namespace std;
-// void maxi(char *q) {
-// 	*q = 'I';
-// }
 
-// void dummy(string &s) {
-// 	// s[0] = 'h';
-// 	// s[1] = 'e';
-// 	char f = 'L';
-// 	cout<<to_string(f);
-// 	s += f;//.append(to_string(f));
-// }
+//using namespace std;
+
 int main() {
 	char temp = 'u';
 	char *refMatrix = &temp;
 	int *refInfo = 0;
-	AGP *agp = new AGP(-15,-5,10,-5,"acgt","cg");
+	string *sequences = 0;
+
+	AGP *agp = new AGP(-15,-5,10,-5,"cg","acgt");
 	agp->initializeMatrices();
 	refInfo = agp->fillMatrices(refMatrix);
+	//passing max_val, index-x, index-y, matrix key to start the tracing
+	sequences = agp->performBacktrace(refInfo[1], refInfo[2], refMatrix);
+	cout<<"Optimal Alignment Score: "<<refInfo[0]<<endl;
+	cout<<"Optimal Alignment"<<"\n"<<"________________________"<<endl;
+	cout<<"sequence 1: "<<sequences[0]<<endl;
+	cout<<"sequence 2: "<<sequences[1]<<endl;
 	agp->printMatrix();
-
-
-	// string m = "s";
-	// //*m = "bye";
-	// cout<<"original:"<<m<<endl;
-	// dummy(m);
-	// cout<<"updated:"<<m<<endl;
-	//int a = max(6,5);
-	//cout<<"A:"<<a<<endl;
-	// cout << std::string( 4, ' ' );
-	// cout<<"happy"<<endl;
-	// char t = 's';
-	// char *w = &t;
-	// cout<<"original:"<<(*w)<<endl;
-	// maxi(w);
-	// cout<<"update:"<<(*w)<<endl;
-
-	// M[i][j] = matchChars(_s1[i-1], _s2[j-1]) + max (
-	// 										max (
-	// 											M[i-1][j-1],
-	// 											X[i-1][j-1]
-	// 										),
-	// 										Y[i-1][j-1]
-	// 					);
-	// X[i][j] = max(
-	// 						max (
-	// 							M[i][j-1] + _gap_open,
-	// 							X[i][j-1] + _gap_extend
-	// 						),
-	// 						Y[i][j-1] + _gap_open
-	// 					);
-	// Y[i][j] = max(
-	// 						max (
-	// 							M[i-1][j] + _gap_open,
-	// 							X[i-1][j] + _gap_open
-	// 						),
-	// 						Y[i-1][j] + _gap_extend
-	// 					);
-
-	// if (M[i][j] > X[i][j] && M[i][j] > Y[i][j]) {
-	// 	max_val = M[i][j];
-	// 	//mat = 'm';
-	// } else if (X[i][j] > M[i][j] && X[i][j] > Y[i][j]) {
-	// 	max_val = X[i][j];
-	// 	//mat = 'x';
-	// } else {
-	// 	max_val = Y[i][j];
-	// 	//mat = 'y';
-	// }
-
 	return 0;
 }
+
+/*
+	Test Cases
+	gap_open and gap_extend are both negative
+	match is +ve and mismatch <= 0
+
+a)AGP *agp = new AGP(-15,-5,10,-5,"DRAVPI","DPLYV");
+b)AGP *agp = new AGP(-15,-5,10,-5,"cg","acgt");
+c)AGP *agp = new AGP(-3,-1,10,-5,"AAT","ACACT");
+d)AGP *agp = new AGP(-10,-1,5,-2,"CAT","CART");
+e)AGP *agp = new AGP(-10,-1,5,-2,"AAKL","ADACKKK");
+f)AGP *agp = new AGP(-10,-1,5,-2,"AAATCA","AAAGAATTCA");
+*/
