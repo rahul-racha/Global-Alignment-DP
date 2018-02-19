@@ -1,15 +1,14 @@
 # Global-Alignment-DP
-Implement global alignment dynamic programming algo using affine-gap penalty.
+Implementation of Global Alignment Dynamic Programming Algorithm using Affine-Gap Penalty.
 
-###### __Rahul Reddy Rachamalla__
+## *__Requirement__*
+C++ compiler
 
-_CS 723, Fall 2017_
-
-##### *__How to execute the file__*
+## *__Run__*
 chmod +x affine.sh (grant permission to run the script)
 
 ./affine.sh
 
-##### *__Sample output__*
+## *__Sample output__*
 ![affine](sample_output.png)
 
